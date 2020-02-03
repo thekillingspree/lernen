@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import QuestionPage from '../pages/QuestionPage';
 import Dashboard from '../pages/Dashboard'
 import SignUp from '../pages/SignUp';
+import VideoPages from '../pages/VideoPages';
 
 const history = createBrowserHistory();
 
@@ -19,6 +20,7 @@ const AppRouter = () => (
             <Route path={"/login"} component={Login} />
             <Route path={"/dashboard"} component={Dashboard} />
             <Route path={"/signup"} component={SignUp} />
+            <Route path={"/v"} component={VideoPages} />
         </Switch>
     </Router>
 );
