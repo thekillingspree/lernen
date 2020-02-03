@@ -20,11 +20,6 @@ const subtitle = {
     color: "#fff"
 }
 
-const icon = {
-    opacity: "70%",
-    
-}
-
 const title = {
     fontSize: "60px",
     marginBottom : "-5px"
