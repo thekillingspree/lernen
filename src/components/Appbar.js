@@ -10,6 +10,7 @@ import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
 import PaletteIcon from '@material-ui/icons/Palette';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -65,7 +66,7 @@ const Appbar = props => {
                     <Divider />
                     <ListItem button onClick={props.toggleTheme}>
                         <ListItemIcon>
-                            <NightsStayIcon />
+                            {!props.theme.isDark ? <NightsStayIcon /> : <Brightness7Icon />}
                         </ListItemIcon>
                         <ListItemText>Toggle Theme</ListItemText>
                     </ListItem>
@@ -95,4 +96,6 @@ const Appbar = props => {
     )
 }
 
-export default connect(null, {toggleTheme})(Appbar)
+const mapStateToProps = ({theme}) => ({theme})
+
+export default connect(mapStateToProps, {toggleTheme})(Appbar)
