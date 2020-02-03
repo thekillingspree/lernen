@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import { Card, CardContent } from '@material-ui/core';
+import { Card, CardContent, CardActionArea } from '@material-ui/core';
 
 const card = {
-    fontSize : "17px",
-    padding : "3px",
-    width: "290px",
-    minHeight: "120px",
-    marginTop : "40px",
+    fontSize : "32px",
+    padding : "30px",
+    width: "400px",
+    minHeight: "150px",
+    marginTop : "60px",
     marginRight : "40px",
     marginLeft : "40px",
     display: "flex",
@@ -19,11 +19,11 @@ const card = {
 export default class AnswerTabs extends Component{
     render(){
         return(
-            <Card style={{...card, backgroundColor:this.props.color}}>
+            <CardActionArea style={{...card, backgroundColor:this.props.color}}>
                 <CardContent>
                     {this.props.text}
                 </CardContent>
-            </Card>
+            </CardActionArea>
         )
     }
 }

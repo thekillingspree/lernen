@@ -14,8 +14,9 @@ const QuestParent = {
     display: "flex",
     flexWrap: "Wrap",
     justifyContent: "center",
-    padding: "30px",
-    fontSize: "21px"
+    padding: "50px",
+    fontSize: "32px",
+    minHeight: "150px"
 }
 
 const container = {
