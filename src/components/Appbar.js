@@ -19,12 +19,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
 import { toggleTheme } from '../actions/theme';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import ColorPicker from './ColorPicker';
+import { Button } from '@material-ui/core';
+
 
 
 const Appbar = props => {
 
     const [drawer, setDrawer] = useState(false)
-
+    const [color, setColor] = useState(false)
     return (
         <React.Fragment>
             <AppBar position="static">
@@ -70,7 +78,7 @@ const Appbar = props => {
                         </ListItemIcon>
                         <ListItemText>Toggle Theme</ListItemText>
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={() => setColor(true)}>
                         <ListItemIcon>
                             <PaletteIcon />
                         </ListItemIcon>
@@ -92,6 +100,23 @@ const Appbar = props => {
                 </List>
                 </React.Fragment>
             </Drawer>
+            <Dialog
+                open={color}
+                onClose={() => setColor(false)}
+            >
+                <DialogContent>
+                    <DialogTitle>Choose Theme Color</DialogTitle>
+                    <ColorPicker callback={() => {
+                        setColor(false)
+                        setDrawer(false)
+                    }}/>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setColor(false)}>
+                        CANCEL
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </React.Fragment>
     )
 }

@@ -22,8 +22,8 @@ const tempLessons = [
         description: "Understand React Native with Hooks, Context, and React Navigation."
     },
     {
-        image: "https://cdn01.alison-static.net/courses/887/alison_courseware_intro_887.jpg",
-        title: "Scripting with Javascript",
+        image: "https://onlineitguru.com/wp-content/uploads/2018/07/blockchainn.png",
+        title: "Blockchain Concepts",
         description: "Learn how to program JavaScript applications for enhanced interactivity and functionality in web pages."
     },
     {
