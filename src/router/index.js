@@ -8,6 +8,9 @@ import QuestionPage from '../pages/QuestionPage';
 import Dashboard from '../pages/Dashboard'
 import SignUp from '../pages/SignUp';
 import VideoPages from '../pages/VideoPages';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+import AdminOnlyRoute from './AdminOnlyRoute';
 
 const history = createBrowserHistory();
 
@@ -15,12 +18,13 @@ const AppRouter = () => (
     <Router history={history}>
         <Switch>
             <Route exact={true} path={"/"} component={Home} />
-            <Route exact={true} path={"/login"} component={Login} />
             <Route path={"/Q"} component={QuestionPage} />
-            <Route path={"/login"} component={Login} />
-            <Route path={"/dashboard"} component={Dashboard} />
-            <Route path={"/signup"} component={SignUp} />
-            <Route path={"/v"} component={VideoPages} />        </Switch>
+            <PublicRoute path={"/login"} component={Login} />
+            <PublicRoute path={"/signup"} component={SignUp} />
+            <PrivateRoute path={"/dashboard"} component={Dashboard} />
+            <AdminOnlyRoute path={"/admin/dashboard"} component={Dashboard} />
+            <PrivateRoute path={"/v"} component={VideoPages} />        
+        </Switch>
     </Router>
 );
 

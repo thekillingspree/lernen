@@ -6,7 +6,7 @@ export const DEF_THEME = {
 }
 
 export const DEF_USER = {
-    id: "",
+    _id: {$oid: ""},
     username: "",
     email: "",
     current_course: {},
@@ -15,7 +15,7 @@ export const DEF_USER = {
 }
 
 export const DEF_ADMIN = {
-    id: "",
+    _id: {$oid: ""},
     username: "",
     email: "",
     fname: "",

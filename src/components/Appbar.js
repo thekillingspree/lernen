@@ -25,8 +25,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ColorPicker from './ColorPicker';
-import { Button } from '@material-ui/core';
-
+import Button from '@material-ui/core/Button';
+import { adminLogout, userLogout } from '../actions';
 
 
 const Appbar = props => {
@@ -91,7 +91,13 @@ const Appbar = props => {
                         </ListItemIcon>
                         <ListItemText>Your Account</ListItemText>
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={() => {
+                        if (props.user.token) {
+                            return props.userLogout()
+                        } else if (props.admin.token) {
+                            return props.adminLogout()
+                        }
+                    }}>
                         <ListItemIcon>
                             <MeetingRoomIcon />
                         </ListItemIcon>
@@ -121,6 +127,6 @@ const Appbar = props => {
     )
 }
 
-const mapStateToProps = ({theme}) => ({theme})
+const mapStateToProps = ({theme, user, admin}) => ({theme, user, admin})
 
-export default connect(mapStateToProps, {toggleTheme})(Appbar)
+export default connect(mapStateToProps, {toggleTheme, adminLogout, userLogout})(Appbar)
