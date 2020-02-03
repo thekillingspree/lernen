@@ -20,8 +20,7 @@ const AppRouter = () => (
             <Route path={"/login"} component={Login} />
             <Route path={"/dashboard"} component={Dashboard} />
             <Route path={"/signup"} component={SignUp} />
-            <Route path={"/v"} component={VideoPages} />
-        </Switch>
+            <Route path={"/v"} component={VideoPages} />        </Switch>
     </Router>
 );
 
