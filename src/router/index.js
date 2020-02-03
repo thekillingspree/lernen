@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Router, Route, Switch} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
@@ -15,6 +16,7 @@ const AppRouter = () => (
             <Route exact={true} path={"/login"} component={Login} />
             <Route path={"/Q"} component={QuestionPage} />
             <Route path={"/login"} component={Login} />
+            <Route path={"/dashboard"} component={Dashboard} />
             <Route path={"/signup"} component={SignUp} />
         </Switch>
     </Router>
