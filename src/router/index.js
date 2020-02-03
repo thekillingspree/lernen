@@ -4,6 +4,8 @@ import {createBrowserHistory} from 'history';
 import Home from '../pages/Home'
 import Login from '../pages/Login';
 import QuestionPage from '../pages/QuestionPage';
+import SignUp from '../pages/SignUp';
+
 const history = createBrowserHistory();
 
 const AppRouter = () => (
@@ -12,6 +14,8 @@ const AppRouter = () => (
             <Route exact={true} path={"/"} component={Home} />
             <Route exact={true} path={"/login"} component={Login} />
             <Route path={"/Q"} component={QuestionPage} />
+            <Route path={"/login"} component={Login} />
+            <Route path={"/signup"} component={SignUp} />
         </Switch>
     </Router>
 );

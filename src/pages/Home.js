@@ -29,7 +29,7 @@ const title = {
 const Home = () => (
 <div style={home}>
     <div style={title} className="Title">Lernen</div>
-    <div style={subtitle} className="Subtitle">An all new easy, hands-on and evolutionized way of learning!</div>
+    <div style={subtitle} className="Subtitle">An all new easy, hands-on and revolutionized way of learning!</div>
     <Button style={{maxWidth: 200}} variant="outlined" onClick={() => history.push('/login')} color="secondary" >Get started!<ArrowForwardIosIcon fontSize="small" color="secondary" /></Button>
 </div>)
 
