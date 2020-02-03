@@ -7,7 +7,9 @@ const home = {
     backgroundColor : "#000" ,
     color : "#f50057",
     padding : "30px",
-    alignSelf: "flex-end",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     height: "100vh"
 }
 
@@ -20,7 +22,7 @@ const subtitle = {
 
 const icon = {
     opacity: "70%",
-    color: '#fff'
+    
 }
 
 const title = {
@@ -29,10 +31,11 @@ const title = {
 }
 
 
-const Home = () => (<div style={home}>
+const Home = () => (
+<div style={home}>
     <div style={title} className="Title">Lernen</div>
     <div style={subtitle} className="Subtitle">An all new easy, hands-on and evolutionized way of learning!</div>
-    <Button variant="outlined" onClick={history.push('/login')} color="secondary" >Get started!<ArrowForwardIosIcon fontSize="small" style={icon} /></Button>
+    <Button style={{maxWidth: 200}} variant="outlined" onClick={() => history.push('/login')} color="secondary" >Get started!<ArrowForwardIosIcon fontSize="small" color="secondary" /></Button>
 </div>)
 
 export default Home;
