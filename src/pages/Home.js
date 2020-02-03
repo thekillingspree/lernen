@@ -15,7 +15,6 @@ const home = {
 
 const subtitle = {
     fontSize: "22px",
-    color : "#f50057" ,
     marginBottom: "20px",
     color: "#fff"
 }

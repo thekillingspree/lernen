@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card, CardContent, CardActionArea } from '@material-ui/core';
+import { CardContent, CardActionArea } from '@material-ui/core';
 
 const card = {
     fontSize : "32px",

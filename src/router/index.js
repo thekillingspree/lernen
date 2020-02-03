@@ -5,6 +5,7 @@ import {createBrowserHistory} from 'history';
 import Home from '../pages/Home'
 import Login from '../pages/Login';
 import QuestionPage from '../pages/QuestionPage';
+import Dashboard from '../pages/Dashboard'
 import SignUp from '../pages/SignUp';
 
 const history = createBrowserHistory();
