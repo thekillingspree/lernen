@@ -12,7 +12,8 @@ const card = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: "4px"
 }
 
 

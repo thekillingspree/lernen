@@ -22,7 +22,8 @@ const QuestParent = {
 const container = {
     backgroundColor: "#000",
     color: "#fff",
-    padding: "20px"
+    padding: "20px",
+    borderRadius: "4px"
 }
 
 export default class QuestionPage extends Component{
