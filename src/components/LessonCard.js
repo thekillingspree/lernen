@@ -10,8 +10,8 @@ import Button from '@material-ui/core/Button';
 const LessonCard = props => {
     const {image, title, description} = props;
     return (
-        <Card style={{maxWidth: 300, margin: "10px 15px"}}>
-            <CardActionArea style={{flexGrow: 1}}>
+        <Card className="lesson-card" >
+            
                 <CardMedia 
                 style={{height: 150}}
                 image={image}
@@ -21,16 +21,17 @@ const LessonCard = props => {
                     <Typography gutterBottom variant="h5" component="h2">
                         {title}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="textSecondary" component="p" style={{minHeight: 150}}>
                         {description}
                     </Typography>
                 </CardContent>
-            </CardActionArea>
+                <CardActionArea style={{flexGrow: 1, position: 'absolute', bottom: 0}}>
             <CardActions>
                 <Button size="small" color="primary">
                 Continue Lesson
                 </Button>
             </CardActions>        
+            </CardActionArea>
         </Card>
     )
 }
