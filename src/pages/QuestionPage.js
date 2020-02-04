@@ -1,12 +1,13 @@
 import AnswerTabs from '../components/AnswerTabs';
 import React, {Component} from 'react';
 import { Container } from '@material-ui/core';
+import Appbar from '../components/Appbar';
 
 const CardDetails = [
-    {color:"#846843", text:"lkdfhukg"},
-    {color:"#836748", text:"oidfhguiuhsuid"},
-    {color:"#985764", text:"usdhffds"},
-    {color:"#984520", text:"slighd"}
+    {color:"#C81912", option: "A", text:"lkdfhukg"},
+    {color:"#fddb3a", option: "B", text:"oidfhguiuhsuid"},
+    {color:"#192965", option: "C", text:"usdhffds"},
+    {color:"#52de97", option: "D", text:"slighd"}
 ]
 
 
@@ -20,7 +21,8 @@ const QuestParent = {
 }
 
 const container = {
-    backgroundColor: "#000",
+    backgroundColor: "#333333",
+    paddingLeft: "10px",
     color: "#fff",
     padding: "20px",
     borderRadius: "4px"
@@ -29,13 +31,21 @@ const container = {
 export default class QuestionPage extends Component{
     render(){
         return(
-        <div style={QuestParent}>
-        <Container maxWidth="lg" style={container}>fafjgiaf</Container>
-        {
-            CardDetails.map((detail, index) => {
-                return <AnswerTabs color={detail.color} text={detail.text} key={index} />
-            })
-        }
+        <div>
+            <Appbar></Appbar>
+            <div style={QuestParent}>
+            <Container maxWidth="lg" style={container}>fafjgiaf</Container>
+            {
+                CardDetails.map((detail, index) => {
+                    return (
+                        <div>
+                             
+                             <AnswerTabs color={detail.color} option={detail.option} text={detail.text} key={index} />
+                        </div>
+                    )
+                })
+            }
+            </div>
         </div>
         )
     }
