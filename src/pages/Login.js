@@ -6,7 +6,6 @@ import Link from '@material-ui/core/Link';
 import {Tabs, Tab, Paper} from '@material-ui/core'
 import { connect } from 'react-redux';
 import { history } from '../router'
-import { Form } from '../styles/login'
 import '../styles/form.css'
 import { userLogin, adminLogin } from '../actions';
 import LoadingDialog from '../components/LoadingDialog';

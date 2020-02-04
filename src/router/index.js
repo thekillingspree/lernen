@@ -14,6 +14,7 @@ import AdminOnlyRoute from './AdminOnlyRoute';
 import CreateNewCourse from '../pages/CreateNewCourse';
 import AdminDashboard from '../pages/AdminDashboard';
 import AddVideo from '../pages/AddVideo';
+import Explore from '../pages/Explore';
 
 const history = createBrowserHistory();
 
@@ -28,7 +29,8 @@ const AppRouter = () => (
             <AdminOnlyRoute path={"/admin/dashboard"} component={AdminDashboard} />
             <AdminOnlyRoute path={"/admin/new"} component={CreateNewCourse} />
             <AdminOnlyRoute path={"/admin/:cid/add"} component={AddVideo} />
-            <PrivateRoute path={"/:cid/learn/:vid"} component={VideoPages} />        
+            <PrivateRoute path={"/:cid/learn"} component={VideoPages} />        
+            <PrivateRoute path={"/allcourses"} component={Explore} />        
         </Switch>
     </Router>
 );

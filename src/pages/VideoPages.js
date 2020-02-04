@@ -1,18 +1,14 @@
 import React, {Component} from 'react';
 import Appbar from '../components/Appbar';
-import {  CardContent, Divider } from '@material-ui/core';
-import { CardActionArea } from '@material-ui/core';
-
-const videoDetails = [
-    {title:"#0 JavaScript Tutorial | Introduction", url: "https://youtube.com/embed/uDwSnnhl1Ng"},
-    {title:"#1 JavaScript Tutorial | Why you should Learn JavaScript Today", url: "https://youtube.com/embed/uxWO8Sd8PoY"},
-    {title:"#2 JavaScript Tutorial | What is Dom? | Document Object Model", url: "https://youtube.com/embed/_GxpmQ54aqg"},
-    {title:"#3 JavaScript Tutorial | First Hello World Program", url: "https://youtube.com/embed/I5xesmmiREU"},
-    {title:"#4 JavaScript Tutorials | Statements and comments", url: "https://youtube.com/embed/vWX2eoi3bOc"}
-];
+import {  CardContent, Divider, CircularProgress } from '@material-ui/core';
+import { CardActionArea, Button } from '@material-ui/core';
+import { getAllVideosForCourse } from '../actions';
+import { getIDFromURL } from '../utils';
+import styled from 'styled-components'
+import { connect } from 'react-redux';
 
 const handleClick = (url, title) => {
-    document.getElementById('YtVideo').src = url;
+    document.getElementById('YtVideo').src = `https://youtube.com/embed/${getIDFromURL(url)}`;
     document.getElementById('title').innerText = title;
 }
 
@@ -28,33 +24,61 @@ const verticalcontainer = {
     flexWrap: "wrap"
 }
 
-export default class VideoPages extends Component{
+
+const LoaderContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+`
+class VideoPages extends Component{
+    
+    state = {
+        videos: [],
+        loading: true
+    }
+
+    async componentDidMount() {
+        this.setState({loading: true})
+        const videos = await getAllVideosForCourse(this.props.match.params.cid)
+        console.log(videos)
+        this.setState({videos, loading: false})
+    }
+
     render(){
+        const {videos, loading} = this.state;
         return(
             <div>
                 <Appbar></Appbar>
-                <div style={HorizontalContainer}>
+                {!loading && <div style={HorizontalContainer}>
                     <div>
-                    <iframe style={{width: "90vh", height: "60vh", margin: "30px 20px 0 20px", boxShadow: "2px 2px 1px 1px #f0efdf"}} id="YtVideo" width="560" height="315" src="https://www.youtube.com/embed/uDwSnnhl1Ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <p id="title" style={{fontWeight: "600", margin: "7px 0 0 20px", fontSize: "18px"}}>#0 JavaScript Tutorial | Introduction</p>
+                    <iframe title="Course video" style={{width: "90vh", height: "60vh", margin: "30px 20px 0 20px"}} id="YtVideo" width="560" height="315" src={`https://www.youtube.com/embed/${getIDFromURL(videos[0].url)}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div style={{...verticalcontainer, margin: "30px 20px 0 20px"}}>
                         <div style={{fontSize: "26px", marginBottom: "14px", fontWeight: "900px"}}>Topics</div>
                         <Divider />
                         {
-                            videoDetails.map((video, key) => {
+                            videos.map((video, key) => {
                                 return (<div>
-                                            <CardActionArea key={key} onClick={(e) => handleClick(video.url, video.title)} style={{fontSize: "18px"}}>
-                                                <CardContent>{video.title}</CardContent>
+                                            <CardActionArea key={key} onClick={(e) => handleClick(video.url, video.name)} style={{fontSize: "18px"}}>
+                                <CardContent>#{key+1}. {video.name}</CardContent>
                                             </CardActionArea>
                                             <Divider />
                                         </div>)
                             })
                         }
+                        <Button>Quiz for Lesson</Button>
+                        {loading && <LoaderContainer>
+                                <CircularProgress size={60}/>
+                            </LoaderContainer>}
                     </div>    
-                </div>
+                </div>}
             </div>
             
         )
     }
 }
+
+
+export default connect()(VideoPages)

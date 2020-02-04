@@ -59,3 +59,43 @@ export const getAllUserCourses = () => {
         }
     }
 }
+
+export const enrollUser = (cid) => {
+    return async (dispatch, getState) => {
+        const {user} = getState()
+        try {
+            const {data} = await axios.post(`${API_END_PT}/users/enroll?uid=${user._id.$oid}`, {
+                id: cid
+            },{
+                headers: { Authorization: `Bearer ${user.token}` }
+            });
+            console.log(data);
+            return data
+        } catch(e) {
+            console.log(e.response.data);
+            return e.response.data
+        }
+    }
+}
+
+export const getAllVideosForCourse =  async (cid) => {
+    try {
+        const {data} = await axios.post(`${API_END_PT}/course/allvideos`, {cid});
+        return data
+    } catch(e) {
+        console.log(e.response.data);
+        return e.response.data
+    }
+}
+
+export const getAllCourses = () => {
+    return async () => {
+        try {
+            const {data} = await axios.get(`${API_END_PT}/course/all`);
+            return data
+        } catch(e) {
+            console.log(e.response.data);
+            return e.response.data
+        }
+    }
+}

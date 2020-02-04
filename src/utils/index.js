@@ -1,0 +1,1 @@
+export const getIDFromURL = url => url.split('watch?v=')[1]

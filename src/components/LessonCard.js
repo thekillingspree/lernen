@@ -12,7 +12,6 @@ const LessonCard = props => {
     const {imageURL, title, description, buttonText="Goto Course", onButtonClick} = props;
     return (
         <Card className="lesson-card" >
-            
                 <CardMedia 
                 style={{height: 150}}
                 image={imageURL}

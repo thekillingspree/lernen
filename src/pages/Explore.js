@@ -6,8 +6,10 @@ import LessonCard from '../components/LessonCard';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { history } from '../router';
-import { getAllUserCourses } from '../actions';
+import { getAllCourses, enrollUser } from '../actions';
 import { CircularProgress } from '@material-ui/core';
+import LoadingDialog from '../components/LoadingDialog';
+
 
 const CardContainer = styled.div`
     display: flex;
@@ -24,14 +26,15 @@ const LoaderContainer = styled.div`
 
 
 
-const Dashboard = props => {
+const Explore = props => {
     const [courses, setCourses] = useState([])
     const [loading, setLoading] = useState(false)
-    
+    const [dialog, setDialog] = useState(false)
+    const {getAllCourses} = props;
     useEffect( () => {
         (async function xyz() {
-            await setLoading(true)
-            const cs = await props.getAllUserCourses()
+            setLoading(true)
+            const cs = await getAllCourses()
             console.log(cs)
             setCourses(cs)
             setLoading(false)
@@ -42,18 +45,22 @@ const Dashboard = props => {
             <Appbar />
             <Container>
                 <Typography variant="h4" style={{margin: "30px 0"}}>
-                    Your Lessons
+                    Course Catalog
                 </Typography>
                 {!loading &&<CardContainer>
-                     {courses.map(lesson => <LessonCard onButtonClick={async () => {
-                        history.push(`/${lesson._id.$oid}/learn`)
+                     {courses.map(lesson => <LessonCard buttonText="Enroll" onButtonClick={async () => {
+                            setDialog(true)
+                            await props.enrollUser(lesson._id.$oid)
+                            history.push(`/${lesson._id.$oid}/learn/`)
+                            setDialog(false)
+
                      }} {...lesson}/>)}
                 </CardContainer>}
                 {loading && <LoaderContainer> <CircularProgress size={24} color="secondary"/></LoaderContainer>}
-               
             </Container>
+            <LoadingDialog open={dialog} title="Enrolling to Course"/>
         </div>
     )
 }
 
-export default connect(({user, admin})=> ({user, admin}), {getAllUserCourses})(Dashboard)
+export default connect(({user, admin})=> ({user, admin}), {getAllCourses, enrollUser})(Explore)

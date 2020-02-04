@@ -1,4 +1,4 @@
-import { DEF_THEME, SET_THEME_COLOR, SET_THEME_MODE, ADMIN_LOGOUT, DEF_ADMIN, USER_LOGOUT } from "../constants";
+import { DEF_THEME, SET_THEME_COLOR, SET_THEME_MODE, ADMIN_LOGOUT, USER_LOGOUT } from "../constants";
 
 export default (state=DEF_THEME, action) => {
     switch(action.type) {

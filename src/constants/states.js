@@ -21,3 +21,31 @@ export const DEF_ADMIN = {
     fname: "",
     token: ""
 }
+
+export const DEF_QUIZ = [
+    {
+        cid: "5e38a45969c6e70d1c93b0b7",
+        questions: [
+            {
+                question: "Inside which HTML element do we put the JavaScript?",
+                option: [
+                    "<script>",
+                    "<link>",
+                    "<a>",
+                    "<javascript>"
+                ],
+                correct: "<script>"
+            },
+            {
+                question: "Inside which HTML element do we put the JavaScript?",
+                option: [
+                    "<script>",
+                    "<link>",
+                    "<a>",
+                    "<javascript>"
+                ],
+                correct: "<script>"
+            },
+        ]
+    }
+]

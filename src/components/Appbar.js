@@ -43,11 +43,13 @@ const UserList = props => (
             </ListItemIcon>
             <ListItemText>Take a Quiz</ListItemText>
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => {
+            history.push('/allcourses')
+        }}>
             <ListItemIcon>
                 <ExploreIcon />
             </ListItemIcon>
-            <ListItemText>Topics</ListItemText>
+            <ListItemText>Explore</ListItemText>
         </ListItem>
         <Divider />
         <ListItem button onClick={props.toggleTheme}>
