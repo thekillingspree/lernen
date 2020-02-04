@@ -40,7 +40,6 @@ export default class VideoPages extends Component{
                     </div>
                     <div style={{...verticalcontainer, margin: "30px 20px 0 20px"}}>
                         <div style={{fontSize: "26px", marginBottom: "14px", fontWeight: "900px"}}>Topics</div>
-
                         <Divider />
                         {
                             videoDetails.map((video, key) => {
