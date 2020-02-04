@@ -42,3 +42,53 @@ export const adminSignup = (username, password, email, fname) => {
         }
     }
 }
+
+export const createCourse = (course) => {
+    return async (dispatch, getState) => {
+        const {admin} = getState()
+        try {
+            const {data} = await axios.post(`${API_END_PT}/course/new`, {
+                ...course
+            }, {
+                headers: { Authorization: `Bearer ${admin.token}` }
+            });
+            console.log(data);
+        
+        } catch(e) {
+            console.log(e.response.data);
+            return e.response.data
+        }
+    }
+}
+
+export const getAllCourses = () => {
+    return async (dispatch, getState) => {
+        const {admin} = getState()
+        try {
+            const {data} = await axios.get(`${API_END_PT}/admin/courses?id=${admin._id.$oid}`, {
+                headers: { Authorization: `Bearer ${admin.token}` }
+            });
+            console.log(data);
+            return data
+        } catch(e) {
+            console.log(e.response.data);
+            return e.response.data
+        }
+    }
+}
+
+
+export const addVideo = video => {
+    return async (dispatch, getState) => {
+        const {admin} = getState()
+        try {
+            const {data} = await axios.post(`${API_END_PT}/course/addvideo?id=${admin._id.$oid}`, {...video}, {
+                headers: { Authorization: `Bearer ${admin.token}` }
+            });
+            console.log(data);
+        } catch(e) {
+            console.log(e.response.data);
+            return e.response.data
+        }
+    }
+}

@@ -43,3 +43,19 @@ export const userSignup = (username, password, email, fname) => {
         }
     }
 }
+
+export const getAllUserCourses = () => {
+    return async (dispatch, getState) => {
+        const {user} = getState()
+        try {
+            const {data} = await axios.get(`${API_END_PT}/users/enrolled?uid=${user._id.$oid}`, {
+                headers: { Authorization: `Bearer ${user.token}` }
+            });
+            console.log(data);
+            return data
+        } catch(e) {
+            console.log(e.response.data);
+            return e.response.data
+        }
+    }
+}

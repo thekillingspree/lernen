@@ -2,7 +2,7 @@ import {YELLOW} from '.'
 
 export const DEF_THEME = {
     color: YELLOW,
-    isDark: false
+    isDark: true
 }
 
 export const DEF_USER = {

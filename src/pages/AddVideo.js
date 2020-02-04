@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
-import { createCourse } from '../actions'
+import { createCourse, addVideo } from '../actions'
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField'
@@ -10,26 +10,25 @@ import '../styles/form.css'
 import { Snackbar } from '@material-ui/core';
 import LoadingDialog from '../components/LoadingDialog';
 import { history } from '../router';
-const CreateNewCourse = props => {
 
-    const {createCourse} = props;
+const AddNewVideo = props => {
 
+    const {addVideo, match: {params: {cid}}} = props;
+    console.log(cid)
     const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [imageURL, setImageURL] = useState("")
+    const [url, setUrl] = useState("")
+    
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const onFormSubmit = async () => {
-        
-        const course = {
+        setLoading(true)
+        const video = {
             name,
-            description,
-            imageURL
+            url,
+            cid
         }
-        if (!name || !description || !imageURL)
-            return setError("Please fill all the fields.")
-            setLoading(true)
-        const error = await createCourse(course)
+        const error = await addVideo(video)
+        console.log(error)
         setError(error && error.error)
         if (!error) 
             history.push('/admin/dashboard')
@@ -41,25 +40,18 @@ const CreateNewCourse = props => {
             <Appbar />
             <Container>
                 <Typography variant="h4" style={{margin: "30px 0"}}>
-                    Start a new Course
+                    Add a Video
                 </Typography>
                 <form className="form big">
-                    <TextField id="outlined-basic" label="Course Name" variant="outlined" 
+                    <TextField id="outlined-basic" label="Video Name" variant="outlined" 
                     value={name}
                     required
                     onChange={e => setName(e.target.value)}
                     />
-                    <TextField id="outlined-basic" label="Course Image" variant="outlined" 
-                    value={imageURL}
+                    <TextField id="outlined-basic" label="Youtube URL" variant="outlined" 
+                    value={url}
                     required
-                    onChange={e => setImageURL(e.target.value)}
-                    />
-                    <TextField id="outlined-basic" label="Description" variant="outlined" 
-                    value={description}
-                    multiline
-                    rows="4"
-                    required
-                    onChange={e => setDescription(e.target.value)}
+                    onChange={e => setUrl(e.target.value)}
                     />
                     <Button onClick={onFormSubmit} style={{maxWidth: 100}} variant="contained" color="secondary">
                         Submit
@@ -77,4 +69,4 @@ const CreateNewCourse = props => {
     )
 }
 
-export default connect(null, {createCourse})(CreateNewCourse)
+export default connect(null, {addVideo})(AddNewVideo)

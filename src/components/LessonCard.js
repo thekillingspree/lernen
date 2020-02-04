@@ -8,13 +8,14 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 const LessonCard = props => {
-    const {image, title, description} = props;
+    console.log(props);
+    const {imageURL, title, description, buttonText="Goto Course", onButtonClick} = props;
     return (
         <Card className="lesson-card" >
             
                 <CardMedia 
                 style={{height: 150}}
-                image={image}
+                image={imageURL}
                 title="Lesson"
                 />
                 <CardContent>
@@ -25,10 +26,10 @@ const LessonCard = props => {
                         {description}
                     </Typography>
                 </CardContent>
-                <CardActionArea style={{flexGrow: 1, position: 'absolute', bottom: 0}}>
+                <CardActionArea onClick={onButtonClick} style={{flexGrow: 1, position: 'absolute', bottom: 0}}>
             <CardActions>
-                <Button size="small" color="primary">
-                Continue Lesson
+                <Button size="small" color="primary" onClick={onButtonClick}>
+                {buttonText}
                 </Button>
             </CardActions>        
             </CardActionArea>

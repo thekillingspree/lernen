@@ -3,19 +3,21 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
 const PublicRoute = props => {
-    const {isAuthed, component: Component, ...rest} = props;
+    const {isAuthed, component: Component, user, admin, ...rest} = props;
     return (
         <Route {...rest} component={props => {
             if (!isAuthed)
                 return (<Component {...props} />);
-            return (<Redirect to={{pathname: `/dashboard`}} />)
+            return (<Redirect to={{pathname: user.token ? `/dashboard` : '/admin/dashboard'}} />)
         }} />
     )
 }
 
-const mapStateToProps = ({user}) => {
+const mapStateToProps = ({user, admin}) => {
     return {
-        isAuthed: !!user.token
+        isAuthed: !!user.token || !!admin.token,
+        user,
+        admin
     }
 };
 

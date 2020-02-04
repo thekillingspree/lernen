@@ -11,6 +11,9 @@ import VideoPages from '../pages/VideoPages';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import AdminOnlyRoute from './AdminOnlyRoute';
+import CreateNewCourse from '../pages/CreateNewCourse';
+import AdminDashboard from '../pages/AdminDashboard';
+import AddVideo from '../pages/AddVideo';
 
 const history = createBrowserHistory();
 
@@ -22,8 +25,10 @@ const AppRouter = () => (
             <PublicRoute path={"/login"} component={Login} />
             <PublicRoute path={"/signup"} component={SignUp} />
             <PrivateRoute path={"/dashboard"} component={Dashboard} />
-            <AdminOnlyRoute path={"/admin/dashboard"} component={Dashboard} />
-            <PrivateRoute path={"/v"} component={VideoPages} />        
+            <AdminOnlyRoute path={"/admin/dashboard"} component={AdminDashboard} />
+            <AdminOnlyRoute path={"/admin/new"} component={CreateNewCourse} />
+            <AdminOnlyRoute path={"/admin/:cid/add"} component={AddVideo} />
+            <PrivateRoute path={"/:cid/learn/:vid"} component={VideoPages} />        
         </Switch>
     </Router>
 );

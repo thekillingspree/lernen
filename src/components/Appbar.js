@@ -27,7 +27,105 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import ColorPicker from './ColorPicker';
 import Button from '@material-ui/core/Button';
 import { adminLogout, userLogout } from '../actions';
+import { history } from '../router';
 
+const UserList = props => (
+    <List style={{width: 250}}>
+        <ListItem button onClick={() => history.push('/dashboard')}>
+            <ListItemIcon>
+                <MenuBookIcon />
+            </ListItemIcon>
+            <ListItemText>Your Courses</ListItemText>
+        </ListItem>
+        <ListItem button>
+            <ListItemIcon>
+                <QuestionAnswerIcon />
+            </ListItemIcon>
+            <ListItemText>Take a Quiz</ListItemText>
+        </ListItem>
+        <ListItem button>
+            <ListItemIcon>
+                <ExploreIcon />
+            </ListItemIcon>
+            <ListItemText>Topics</ListItemText>
+        </ListItem>
+        <Divider />
+        <ListItem button onClick={props.toggleTheme}>
+            <ListItemIcon>
+                {!props.theme.isDark ? <NightsStayIcon /> : <Brightness7Icon />}
+            </ListItemIcon>
+            <ListItemText>Toggle Theme</ListItemText>
+        </ListItem>
+        <ListItem button onClick={() => props.setColor(true)}>
+            <ListItemIcon>
+                <PaletteIcon />
+            </ListItemIcon>
+            <ListItemText>Color Theme</ListItemText>
+        </ListItem>
+        <Divider />
+        <ListItem button>
+            <ListItemIcon>
+                <AccountCircle />
+            </ListItemIcon>
+            <ListItemText>Your Account</ListItemText>
+        </ListItem>
+        <ListItem button onClick={() => {
+            props.userLogout()
+            history.push('/login')
+        }}>
+            <ListItemIcon>
+                <MeetingRoomIcon />
+            </ListItemIcon>
+            <ListItemText>Logout</ListItemText>
+        </ListItem>
+    </List>
+)
+
+const AdminList = props => (
+    <List style={{width: 250}}>
+        <ListItem button onClick={() => history.push('/admin/dashboard')}>
+            <ListItemIcon>
+                <MenuBookIcon />
+            </ListItemIcon>
+            <ListItemText>Your Courses</ListItemText>
+        </ListItem>
+        <ListItem button onClick={() => history.push("/admin/new")}>
+            <ListItemIcon>
+                <ExploreIcon />
+            </ListItemIcon>
+            <ListItemText>New Course</ListItemText>
+        </ListItem>
+        <Divider />
+        <ListItem button onClick={props.toggleTheme}>
+            <ListItemIcon>
+                {!props.theme.isDark ? <NightsStayIcon /> : <Brightness7Icon />}
+            </ListItemIcon>
+            <ListItemText>Toggle Theme</ListItemText>
+        </ListItem>
+        <ListItem button onClick={() => props.setColor(true)}>
+            <ListItemIcon>
+                <PaletteIcon />
+            </ListItemIcon>
+            <ListItemText>Color Theme</ListItemText>
+        </ListItem>
+        <Divider />
+        <ListItem button>
+            <ListItemIcon>
+                <AccountCircle />
+            </ListItemIcon>
+            <ListItemText>Your Account</ListItemText>
+        </ListItem>
+        <ListItem button onClick={() => {
+            props.adminLogout()
+            history.push('/login')
+        }}>
+            <ListItemIcon>
+                <MeetingRoomIcon />
+            </ListItemIcon>
+            <ListItemText>Logout</ListItemText>
+        </ListItem>
+    </List>
+)
 
 const Appbar = props => {
 
@@ -52,58 +150,8 @@ const Appbar = props => {
             onOpen={() => setDrawer(true)}
             onClose={() => setDrawer(false)}>
                 <React.Fragment>
-                <List style={{width: 250}}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <MenuBookIcon />
-                        </ListItemIcon>
-                        <ListItemText>Lessons</ListItemText>
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <QuestionAnswerIcon />
-                        </ListItemIcon>
-                        <ListItemText>Take a Quiz</ListItemText>
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <ExploreIcon />
-                        </ListItemIcon>
-                        <ListItemText>Topics</ListItemText>
-                    </ListItem>
-                    <Divider />
-                    <ListItem button onClick={props.toggleTheme}>
-                        <ListItemIcon>
-                            {!props.theme.isDark ? <NightsStayIcon /> : <Brightness7Icon />}
-                        </ListItemIcon>
-                        <ListItemText>Toggle Theme</ListItemText>
-                    </ListItem>
-                    <ListItem button onClick={() => setColor(true)}>
-                        <ListItemIcon>
-                            <PaletteIcon />
-                        </ListItemIcon>
-                        <ListItemText>Color Theme</ListItemText>
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AccountCircle />
-                        </ListItemIcon>
-                        <ListItemText>Your Account</ListItemText>
-                    </ListItem>
-                    <ListItem button onClick={() => {
-                        if (props.user.token) {
-                            return props.userLogout()
-                        } else if (props.admin.token) {
-                            return props.adminLogout()
-                        }
-                    }}>
-                        <ListItemIcon>
-                            <MeetingRoomIcon />
-                        </ListItemIcon>
-                        <ListItemText>Logout</ListItemText>
-                    </ListItem>
-                </List>
+                    {props.user.token && <UserList setColor={setColor} {...props}/>}
+                    {props.admin.token && <AdminList setColor={setColor} {...props}/>}
                 </React.Fragment>
             </Drawer>
             <Dialog
