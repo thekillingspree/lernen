@@ -21,7 +21,8 @@ const QuestParent = {
 }
 
 const container = {
-    backgroundColor: "#000",
+    backgroundColor: "#333333",
+    paddingLeft: "10px",
     color: "#fff",
     padding: "20px",
     borderRadius: "4px"
@@ -36,7 +37,12 @@ export default class QuestionPage extends Component{
             <Container maxWidth="lg" style={container}>fafjgiaf</Container>
             {
                 CardDetails.map((detail, index) => {
-                    return <AnswerTabs color={detail.color} option={detail.option} text={detail.text} key={index} />
+                    return (
+                        <div>
+                             
+                             <AnswerTabs color={detail.color} option={detail.option} text={detail.text} key={index} />
+                        </div>
+                    )
                 })
             }
             </div>
